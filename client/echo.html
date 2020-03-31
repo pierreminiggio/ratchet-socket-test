@@ -1,0 +1,9 @@
+<script>
+    const conn = new WebSocket('ws://localhost:8080/echo')
+    conn.onmessage = (e) => {
+        console.log(e.data)
+    }
+    conn.onopen = (e) => {
+        conn.send('Hello Me!')
+    }
+</script>

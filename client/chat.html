@@ -1,0 +1,10 @@
+<script>
+    const conn = new WebSocket('ws://localhost:8080')
+    conn.onopen = (e) => {
+        console.log('Connection established!')
+    }
+
+    conn.onmessage = (e) => {
+        console.log(e.data)
+    }
+</script>
