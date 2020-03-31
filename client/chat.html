@@ -1,10 +1,35 @@
-<script>
-    const conn = new WebSocket('ws://localhost:8080')
-    conn.onopen = (e) => {
-        console.log('Connection established!')
-    }
+<head>
+    
+</head>
+<body>
 
-    conn.onmessage = (e) => {
-        console.log(e.data)
-    }
-</script>
+    <div id="messages"></div>
+    <textarea id="new-message"></textarea>
+    <button id="send-button">Envoyer</button>
+
+    <script>
+
+        /**
+         * @param {string} message
+         * @param {bool} isMine
+         **/
+        function appendNewMessage(message, isMine = false) {
+            document.getElementById('messages').innerHTML += '<p style="color: ' + (isMine ? 'blue' : 'grey') + ';">' + message + '</p>'
+        }
+
+        const conn = new WebSocket('ws://localhost:8080')
+        conn.onopen = (e) => {
+            console.log('Connection established!')
+        }
+
+        conn.onmessage = (e) => {
+            appendNewMessage(e.data)
+        }
+
+        document.getElementById('send-button').addEventListener('click', e => {
+            const newMessage = document.getElementById('new-message').value
+            conn.send(newMessage);
+            appendNewMessage(newMessage, true)
+        })
+    </script>
+</body>
