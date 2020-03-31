@@ -15,4 +15,7 @@ $server = IoServer::factory(
     ),
     8080
 );
+
+echo "\nServeur prêt !\n\n";
+
 $server->run();
