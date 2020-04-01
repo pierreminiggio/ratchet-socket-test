@@ -1,5 +1,9 @@
 # ratchet-socket-test
 
+```
+composer install
+```
+
 Un test echo :
 ```
 php echo-server.php
